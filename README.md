@@ -1,14 +1,49 @@
-# Aplikasi Manajemen Mahasiswa TI
+# 🎓 Aplikasi Manajemen Data Mahasiswa TI
 
-Aplikasi Python CLI untuk manajemen data mahasiswa dengan sistem login & role-based access.
+Aplikasi web untuk mengelola data mahasiswa Teknik Informatika dengan fitur CRUD lengkap, sorting, dan filter. Dibangun menggunakan Python + Streamlit.
 
-## Fitur
-- **Login & Register**: Sistem autentikasi dengan hash password
-- **Role Admin**: Tambah, hapus, edit, lihat, cari, sort data mahasiswa
-- **Role User**: Hanya bisa lihat, cari, dan sort data
-- **Forgot Password**: Reset password pake pertanyaan keamanan
-- **Data Otomatis**: 10 data mahasiswa TI udah keisi
+**🚀 Live Demo:** [aplikasi-data-mahasiswa-pranan.streamlit.app](https://aplikasi-data-mahasiswa-pranan.streamlit.app)
 
-## Cara Jalanin
-```bash
-python Mahasiswa.py
+---
+
+## 📸 Screenshot
+
+![Tampilan Aplikasi](https://github.com/prananky21-alt/Aplikasi-Manajemen-Mahasiswa-TI/raw/main/screenshot.png)
+
+*Catatan: Upload screenshot app kamu dengan nama `screenshot.png` ke repo biar muncul di sini*
+
+---
+
+## ✨ Fitur Utama
+
+- **Login Multi-User**: Role Admin dan User dengan hak akses berbeda
+- **CRUD Data**: Tambah, Lihat, Edit, Hapus data mahasiswa
+- **Sorting**: Urutkan data berdasarkan NIM, Nama, IPK
+- **Pencarian**: Cari mahasiswa berdasarkan NIM atau Nama
+- **Filter**: Filter data berdasarkan Jurusan
+- **Penyimpanan JSON**: Data tersimpan di `data_mahasiswa.json`
+
+---
+
+## 🔐 Akun Demo
+
+| Role | Username | Password |
+| --- | --- | --- |
+| **Admin** | `admin` | `admin123` |
+| **User** | `user` | `user123` |
+
+> **Note**: Aplikasi dihosting gratis di Streamlit Cloud. Server akan "sleep" jika tidak ada traffic. Saat pertama diakses akan loading ±30 detik.
+
+---
+
+## 🛠️ Teknologi
+
+- **Frontend**: Streamlit
+- **Backend**: Python
+- **Database**: JSON File
+- **Deployment**: Streamlit Cloud
+
+---
+
+## 📂 Struktur Project
+
