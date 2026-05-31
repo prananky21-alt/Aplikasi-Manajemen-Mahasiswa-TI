@@ -121,16 +121,16 @@ def merge_sort_nim(data):
 # --- 5. DATA 10 MAHASISWA ---
 if 'data' not in st.session_state:
     st.session_state.data = [
-        {"NIM": "12345678", "Nama": "Steve VAi", "Umur": 20, "Jurusan": "Komputer", "IPK": 4.0},
-        {"NIM": "24010006", "Nama": "Maya Sari", "Umur": 19, "Jurusan": "Rekayasa Perangkat Lunak", "IPK": 3.95},
-        {"NIM": "24010002", "Nama": "Siti Nurhaliza", "Umur": 19, "Jurusan": "Sistem Informasi", "IPK": 3.9},
-        {"NIM": "24010004", "Nama": "Dewi Lestari", "Umur": 20, "Jurusan": "Teknologi Informasi", "IPK": 3.85},
-        {"NIM": "24010009", "Nama": "Eko Prasetyo", "Umur": 21, "Jurusan": "Teknik Komputer", "IPK": 3.8},
-        {"NIM": "24010001", "Nama": "Budi Santoso", "Umur": 21, "Jurusan": "Teknik Informatika", "IPK": 3.75},
-        {"NIM": "24010008", "Nama": "Ani Wijaya", "Umur": 20, "Jurusan": "Sistem Informasi", "IPK": 3.7},
-        {"NIM": "24010005", "Nama": "Rudi Hartono", "Umur": 21, "Jurusan": "Ilmu Komputer", "IPK": 3.6},
-        {"NIM": "24010003", "Nama": "Ahmad Rizki", "Umur": 22, "Jurusan": "Teknik Komputer", "IPK": 3.5},
-        {"NIM": "24010007", "Nama": "Joko Susanto", "Umur": 22, "Jurusan": "Teknik Informatika", "IPK": 3.4},
+        {"NIM": "24010000", "Nama": "Firmansyah", "Umur": 20, "Jurusan": "Komputer", "IPK": 4.0},
+        {"NIM": "24010006", "Nama": "Ega Ramadhany", "Umur": 19, "Jurusan": "Rekayasa Perangkat Lunak", "IPK": 3.95},
+        {"NIM": "24010002", "Nama": "Novandi", "Umur": 19, "Jurusan": "Sistem Informasi", "IPK": 3.9},
+        {"NIM": "24010004", "Nama": "Fahmi Maulana", "Umur": 20, "Jurusan": "Teknologi Informasi", "IPK": 3.85},
+        {"NIM": "24010009", "Nama": "Glenadi", "Umur": 21, "Jurusan": "Teknik Komputer", "IPK": 3.8},
+        {"NIM": "24010001", "Nama": "Pranan", "Umur": 21, "Jurusan": "Teknik Informatika", "IPK": 3.75},
+        {"NIM": "24010008", "Nama": "Salwa Aulia", "Umur": 20, "Jurusan": "Sistem Informasi", "IPK": 3.7},
+        {"NIM": "24010005", "Nama": "Eka Sri Rahayu", "Umur": 21, "Jurusan": "Ilmu Komputer", "IPK": 3.6},
+        {"NIM": "24010003", "Nama": "Abdul Goni", "Umur": 22, "Jurusan": "Teknik Komputer", "IPK": 3.5},
+        {"NIM": "24010007", "Nama": "Fadiyah", "Umur": 22, "Jurusan": "Teknik Informatika", "IPK": 3.4},
     ]
 if 'data_filtered' not in st.session_state:
     st.session_state.data_filtered = st.session_state.data.copy()
