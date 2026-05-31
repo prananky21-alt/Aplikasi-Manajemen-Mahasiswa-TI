@@ -23,36 +23,46 @@ if not st.session_state.login:
     login_page()
     st.stop()
 
-# --- 2. CSS FIX BUAT TOMBOL WARNA ---
+# --- 2. CSS TOMBOL WARNA-WARNI ---
 st.markdown("""
 <style>
 .block-container {padding-top: 1rem;}
 h2 {text-align: center; color: #1E3A8A; font-weight: 700;}
-.stDataFrame {border: 1px solid #AAA;}
-
-/* Tombol Cari */
+.stButton > button {
+    border-radius: 4px; border: 1px solid #999;
+    background-color: #EFEFEF; color: black;
+}
 .stButton > button[kind="primary"] {
     background-color: #4A90E2; color: white; border: none;
 }
+.stDataFrame {border: 1px solid #AAA;}
 
-/* INI YANG BIKIN TOMBOL KANAN WARNA-WARNI */
-div[data-testid="column"]:nth-of-type(2) > div > div > div > div > div > div > button {
-    width: 100%; 
-    height: 70px; 
-    font-weight: bold; 
-    color: white;
-    border: none; 
-    border-radius: 8px; 
-    margin-top: 10px; 
-    font-size: 16px;
+/* TOMBOL KANAN WARNA-WARNI */
+.st-key-btn_tambah button {
+    width: 100%; height: 70px; font-weight: bold; color: white!important;
+    border: none!important; border-radius: 8px; margin-top: 10px; font-size: 16px;
+    background-color: #4CAF50!important;
 }
-
-/* Warna per tombol berdasarkan urutan */
-div[data-testid="column"]:nth-of-type(2) > div > div > div > div > div:nth-child(1) button { background-color: #4CAF50!important; } /* Tambah */
-div[data-testid="column"]:nth-of-type(2) > div > div > div > div > div:nth-child(2) button { background-color: #2196F3!important; } /* Update */
-div[data-testid="column"]:nth-of-type(2) > div > div > div:nth-child(3) button { background-color: #F44336!important; } /* Hapus */
-div[data-testid="column"]:nth-of-type(2) > div > div > div > div > div:nth-child(4) button { background-color: #9C27B0!important; } /* Bubble */
-div[data-testid="column"]:nth-of-type(2) > div > div > div > div > div:nth-child(5) button { background-color: #FF9800!important; } /* Merge */
+.st-key-btn_update button {
+    width: 100%; height: 70px; font-weight: bold; color: white!important;
+    border: none!important; border-radius: 8px; margin-top: 10px; font-size: 16px;
+    background-color: #2196F3!important;
+}
+.st-key-btn_hapus button {
+    width: 100%; height: 70px; font-weight: bold; color: white!important;
+    border: none!important; border-radius: 8px; margin-top: 10px; font-size: 16px;
+    background-color: #F44336!important;
+}
+.st-key-btn_bubble button {
+    width: 100%; height: 70px; font-weight: bold; color: white!important;
+    border: none!important; border-radius: 8px; margin-top: 10px; font-size: 16px;
+    background-color: #9C27B0!important;
+}
+.st-key-btn_merge button {
+    width: 100%; height: 70px; font-weight: bold; color: white!important;
+    border: none!important; border-radius: 8px; margin-top: 10px; font-size: 16px;
+    background-color: #FF9800!important;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -173,8 +183,7 @@ if menu == "Tampilkan Semua":
         jurusan = st.text_input("Jurusan:", value=selected_data["Jurusan"])
         ipk = st.number_input("IPK:", value=float(selected_data["IPK"]), min_value=0.0, max_value=4.0, step=0.01)
 
-        # TOMBOL WARNA - GA PAKE KEY LAGI, LANGSUNG URUTAN
-        if st.button("Tambah Data"):
+        if st.button("Tambah Data", key="btn_tambah"):
             if nim and nama and jurusan:
                 if any(d['NIM'] == nim for d in st.session_state.data):
                     st.error("NIM sudah ada!")
@@ -186,7 +195,7 @@ if menu == "Tampilkan Semua":
             else:
                 st.error("NIM, Nama, Jurusan harus diisi!")
 
-        if st.button("Update Data"):
+        if st.button("Update Data", key="btn_update"):
             if st.session_state.selected_idx is not None:
                 nim_lama = st.session_state.data_filtered[st.session_state.selected_idx]['NIM']
                 for i, d in enumerate(st.session_state.data):
@@ -199,19 +208,19 @@ if menu == "Tampilkan Semua":
             else:
                 st.warning("Pilih data di tabel dulu!")
 
-        if st.button("Hapus Data"):
+        if st.button("Hapus Data", key="btn_hapus"):
             if st.session_state.selected_idx is not None:
                 st.session_state.show_dialog = True
                 st.rerun()
             else:
                 st.warning("Pilih data dulu!")
 
-        if st.button("Urutkan (Nama - Bubble)"):
+        if st.button("Urutkan (Nama - Bubble)", key="btn_bubble"):
             st.session_state.data_filtered = bubble_sort_nama(st.session_state.data_filtered.copy())
             st.toast("Data diurutkan Nama - Bubble Sort")
             st.rerun()
 
-        if st.button("Urutkan (NIM - Merge)"):
+        if st.button("Urutkan (NIM - Merge)", key="btn_merge"):
             st.session_state.data_filtered = merge_sort_nim(st.session_state.data_filtered.copy())
             st.toast("Data diurutkan NIM - Merge Sort")
             st.rerun()
