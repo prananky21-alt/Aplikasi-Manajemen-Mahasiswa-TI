@@ -1,9 +1,72 @@
 [
-    {
-        "nim": "12345678",
-        "nama": "Steve VAi",
-        "umur": 20,
-        "jurusan": "Komputer",
-        "ipk": 4.0
-    }
+  {
+    "nim": "12345678",
+    "nama": "Steve VAi",
+    "umur": 20,
+    "jurusan": "Komputer",
+    "ipk": 4.0
+  },
+  {
+    "nim": "24010001",
+    "nama": "Budi Santoso",
+    "umur": 21,
+    "jurusan": "Teknik Informatika",
+    "ipk": 3.75
+  },
+  {
+    "nim": "24010002",
+    "nama": "Siti Nurhaliza",
+    "umur": 19,
+    "jurusan": "Sistem Informasi",
+    "ipk": 3.9
+  },
+  {
+    "nim": "24010003",
+    "nama": "Ahmad Rizki",
+    "umur": 22,
+    "jurusan": "Teknik Komputer",
+    "ipk": 3.5
+  },
+  {
+    "nim": "24010004",
+    "nama": "Dewi Lestari",
+    "umur": 20,
+    "jurusan": "Teknologi Informasi",
+    "ipk": 3.85
+  },
+  {
+    "nim": "24010005",
+    "nama": "Rudi Hartono",
+    "umur": 21,
+    "jurusan": "Ilmu Komputer",
+    "ipk": 3.6
+  },
+  {
+    "nim": "24010006",
+    "nama": "Maya Sari",
+    "umur": 19,
+    "jurusan": "Rekayasa Perangkat Lunak",
+    "ipk": 3.95
+  },
+  {
+    "nim": "24010007",
+    "nama": "Joko Susanto",
+    "umur": 22,
+    "jurusan": "Teknik Informatika",
+    "ipk": 3.4
+  },
+  {
+    "nim": "24010008",
+    "nama": "Ani Wijaya",
+    "umur": 20,
+    "jurusan": "Sistem Informasi",
+    "ipk": 3.7
+  },
+  {
+    "nim": "24010009",
+    "nama": "Eko Prasetyo",
+    "umur": 21,
+    "jurusan": "Teknik Komputer",
+    "ipk": 3.8
+  }
 ]
