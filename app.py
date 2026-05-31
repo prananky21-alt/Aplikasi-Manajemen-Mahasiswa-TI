@@ -26,7 +26,7 @@ if not st.session_state.login:
 # --- 2. CSS Biar Mirip Swing ---
 st.markdown("""
 <style>
-.block-container {padding-top: 1rem;}
+.block-container {padding-top: 2rem;}
     h2 {text-align: center; color: #1E3A8A; font-weight: 700;}
 .stButton > button {
         border-radius: 4px; border: 1px solid #999;
@@ -58,7 +58,7 @@ with st.sidebar:
     
     st.divider()
     st.subheader("Menu Admin")
-    menu = st.selectbox("Pilih Menu", ["Tampilkan Semua", "Tambah Data", "Backup Data"], label_visibility="collapsed")
+    menu = st.selectbox("Pilih Menu", ["Tampilkan Semua", "Backup Data"], label_visibility="collapsed")
     
     st.divider()
     with st.expander("🔽 Backup Data"):
@@ -71,7 +71,7 @@ def bubble_sort_nama(data):
     for i in range(n):
         for j in range(0, n-i-1):
             if data[j]['Nama'].lower() > data[j+1]['Nama'].lower():
-                data[j], data[j+1] = data[j+1], data[j] # INI YANG BENER
+                data[j], data[j+1] = data[j+1], data[j]
     return data
 
 def merge_sort_nim(data):
@@ -84,45 +84,15 @@ def merge_sort_nim(data):
         i = j = k = 0
         while i < len(L) and j < len(R):
             if L[i]['NIM'] < R[j]['NIM']:
-                data[k] = L[i]; i += 1
+                data[k] = L[i]
+                i += 1
             else:
-                data[k] = R[j]; j += 1
+                data[k] = R[j]
+                j += 1
             k += 1
-        while i < len(L): data[k] = L[i]; i+=1; k+=1
-        while j < len(R): data[k] = R[j]; j+=1; k+=1
-    return data
-
-# --- 5. Inisialisasi Data ---
-if 'data' not in st.session_state:
-    st.session_state.data = [
-        {"NIM": "221011400822", "Nama": "Sahrul Ramadhani", "Jurusan": "Teknik Informatika"},
-        {"NIM": "221011400823", "Nama": "Arni Susanti Ndruru", "Jurusan": "Teknik Informatika"},
-        {"NIM": "24010001", "Nama": "Budi Santoso", "Jurusan": "Teknik Informatika"},
-        {"NIM": "24010002", "Nama": "Siti Nurhaliza", "Jurusan": "Sistem Informasi"},
-        {"NIM": "24010003", "Nama": "Ahmad Rizki", "Jurusan": "Teknik Komputer"},
-        {"NIM": "24010004", "Nama": "Dewi Lestari", "Jurusan": "Teknologi Informasi"},
-        {"NIM": "24010005", "Nama": "Rudi Hartono", "Jurusan": "Ilmu Komputer"},
-        {"NIM": "24010006", "Nama": "Maya Sari", "Jurusan": "Rekayasa Perangkat Lunak"},
-        {"NIM": "24010007", "Nama": "Joko Susanto", "Jurusan": "Teknik Informatika"},
-        {"NIM": "24010008", "Nama": "Ani Wijaya", "Jurusan": "Sistem Informasi"},
-    ]
-if 'data_filtered' not in st.session_state:
-    st.session_state.data_filtered = st.session_state.data.copy()
-if 'selected_idx' not in st.session_state:
-    st.session_state.selected_idx = None
-if 'show_dialog' not in st.session_state:
-    st.session_state.show_dialog = False
-
-# --- 6. HALAMAN UTAMA ---
-if menu == "Tampilkan Semua":
-    st.markdown("<h2>Dashboard Manajemen Mahasiswa</h2>", unsafe_allow_html=True)
-    st.subheader("Data Mahasiswa")
-    
-    col_tabel, col_form = st.columns([3, 1.2])
-
-    with col_tabel:
-        c1, c2, c3, c4 = st.columns([2, 1, 1, 1])
-        with c1:
-            cari = st.text_input("Cari Data:", placeholder="Cari Data:", label_visibility="collapsed")
-        with c2:
-            if st.button("
+        while i < len(L):
+            data[k] = L[i]
+            i += 1
+            k += 1
+        while j < len(R):
+            data[k] = R[j]
