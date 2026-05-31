@@ -16,10 +16,10 @@ class Auth:
         self.load_users()
         if not self.users:
             self.register('admin', 'admin123', 'admin', 'apa nama dosen favoritmu?', 'pak budi')
-    
+
     def hash_password(self, password):
         return hashlib.sha256(password.encode()).hexdigest()
-    
+
     def load_users(self):
         try:
             if os.path.exists(self.file_path):
@@ -27,14 +27,14 @@ class Auth:
                     self.users = json.load(f)
         except (IOError, json.JSONDecodeError):
             self.users = {}
-    
+
     def save_users(self):
         try:
             with open(self.file_path, 'w') as f:
                 json.dump(self.users, f, indent=4)
         except IOError as e:
             st.error(f"Error simpan user: {e}")
-    
+
     def register(self, username, password, role='user', pertanyaan=None, jawaban=None):
         if username in self.users:
             raise ValueError("Username sudah ada")
@@ -44,7 +44,7 @@ class Auth:
             raise ValueError("Password minimal 6 karakter")
         if role not in ['admin', 'user']:
             raise ValueError("Role harus admin atau user")
-        
+
         self.users[username] = {
             'password': self.hash_password(password),
             'role': role,
@@ -53,7 +53,7 @@ class Auth:
         }
         self.save_users()
         return True
-    
+
     def login(self, username, password):
         if username not in self.users:
             return False
@@ -62,10 +62,10 @@ class Auth:
             st.session_state.role = self.users[username]['role']
             return True
         return False
-    
+
     def get_role(self):
         return st.session_state.get('role', None)
-    
+
     def logout(self):
         st.session_state.current_user = None
         st.session_state.role = None
@@ -73,17 +73,17 @@ class Auth:
 # ===== OOP: Base Class + Inheritance + Polymorphism =====
 class Person(ABC):
     def __init__(self, nama, umur):
-        self._nama = nama 
+        self._nama = nama
         self._umur = umur
-    
+
     @abstractmethod
     def get_info(self):
         pass
-    
+
     @property
     def nama(self):
         return self._nama
-    
+
     @nama.setter
     def nama(self, value):
         if not re.match(r'^[A-Za-z\s]{3,50}$', value):
@@ -96,52 +96,11 @@ class Mahasiswa(Person):
         self.nim = nim
         self.jurusan = jurusan
         self.ipk = ipk
-    
+
     def get_info(self):
         return f"NIM: {self.nim} | {self._nama} | {self.jurusan} | IPK: {self.ipk}"
-    
+
     def to_dict(self):
         return {
-            'nim': self.nim, 'nama': self._nama, 
-            'umur': self._umur, 'jurusan': self.jurusan, 'ipk': self.ipk
-        }
-    
-    @staticmethod
-    def from_dict(data):
-        return Mahasiswa(data['nim'], data['nama'], data['umur'], 
-                        data['jurusan'], data['ipk'])
-
-# ===== Manajemen Data =====
-class ManajemenMahasiswa:
-    def __init__(self, file_path='data_mahasiswa.json'):
-        self.data_mahasiswa = []
-        self.file_path = file_path
-        self.load_from_file()
-    
-    def save_to_file(self):
-        try:
-            with open(self.file_path, 'w') as f:
-                json.dump([mhs.to_dict() for mhs in self.data_mahasiswa], f, indent=4)
-        except IOError as e:
-            st.error(f"Error simpan file: {e}")
-    
-    def load_from_file(self):
-        try:
-            if os.path.exists(self.file_path):
-                with open(self.file_path, 'r') as f:
-                    data = json.load(f)
-                    self.data_mahasiswa = [Mahasiswa.from_dict(d) for d in data]
-        except (IOError, json.JSONDecodeError) as e:
-            st.warning(f"Error baca file: {e}. Mulai dengan data kosong.")
-            self.data_mahasiswa = []
-
-    def validasi_nim(self, nim):
-        if not re.match(r'^\d{8,12}$', nim):
-            raise ValueError("NIM harus 8-12 digit angka")
-        if any(mhs.nim == nim for mhs in self.data_mahasiswa):
-            raise ValueError("NIM sudah terdaftar")
-        return True
-    
-    def validasi_ipk(self, ipk):
-        if not (0.0 <= float(ipk) <= 4.0):
-            raise
+            'nim': self.nim, 'nama': self._nama,
+            'umur': self._umur, 'jurusan': self.jurusan, 'ip
