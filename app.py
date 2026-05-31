@@ -332,7 +332,26 @@ def main_app(auth, app):
                 st.json(hasil.to_dict())
             else:
                 st.warning("Tidak ditemukan")
-    
+            # === Tambahan: Backup & Download Data ===
+        st.sidebar.markdown("---")
+        st.sidebar.subheader("🔽 Backup Data")
+        
+        if st.sidebar.button("Download JSON"):
+            try:
+                with open("data_mahasiswa.json", "r") as f:
+                    data_json = json.load(f)
+                
+                st.sidebar.download_button(
+                    label="⬇️ Download data_mahasiswa.json",
+                    data=json.dumps(data_json, indent=2, ensure_ascii=False),
+                    file_name="data_mahasiswa.json",
+                    mime="application/json"
+                )
+                st.subheader("Isi data_mahasiswa.json")
+                st.json(data_json)
+            except Exception as e:
+                st.sidebar.error(f"Error: {e}")
+        # === End Tambahan ===
     elif menu == "Sort NIM":
         st.subheader("Sort Data by NIM")
         if st.button("Urutkan Sekarang"):
