@@ -1,0 +1,20 @@
+{
+    "admin": {
+        "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+        "role": "admin",
+        "pertanyaan": "apa nama dosen favoritmu?",
+        "jawaban": "3145ba4c2404307d96f3a3fbfa6e08f61b43159ecea06a5b53938e50064f2635"
+    },
+    "pranan": {
+        "password": "6ca879b0e26d002e180037ec58c256eb4c8a9e01024299a79779259d4445fd8a",
+        "role": "user",
+        "pertanyaan": "kuda",
+        "jawaban": "1ab138fd89d4c060074875dcad06de1701ccaa6f94a67dfd9ca65e8496202f7a"
+    },
+    "jasmin": {
+        "password": "87a858578d3ec546ea037f4bd258c53cf9dc1efc87da28b746c0cf2d5f3a959e",
+        "role": "admin",
+        "pertanyaan": "kucing",
+        "jawaban": "1c575651a095af2dffb21413df381064614f9d8de83ef36106a082de3933959c"
+    }
+}
