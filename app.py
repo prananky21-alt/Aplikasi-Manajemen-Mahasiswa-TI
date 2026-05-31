@@ -35,15 +35,16 @@ h2 {text-align: center; color: #1E3A8A; font-weight: 700;}
 .stButton > button[kind="primary"] {
     background-color: #4A90E2; color: white; border: none;
 }
-div[data-testid="column"]:nth-of-type(2).stButton > button {
+/* TOMBOL WARNA-WARNI PAKE KEY */
+div[data-testid="stButton"] > button[kind="secondary"] {
     width: 100%; height: 70px; font-weight: bold; color: white;
     border: none; border-radius: 8px; margin-top: 10px; font-size: 16px;
 }
-#btn-tambah button { background-color: #4CAF50; }
-#btn-update button { background-color: #2196F3; }
-#btn-hapus button { background-color: #F44336; }
-#btn-bubble button { background-color: #9C27B0; }
-#btn-merge button { background-color: #FF9800; }
+div[data-testid="stButton"]:has(button[aria-label*="btn_tambah"]) button { background-color: #4CAF50!important; }
+div[data-testid="stButton"]:has(button[aria-label*="btn_update"]) button { background-color: #2196F3!important; }
+div[data-testid="stButton"]:has(button[aria-label*="btn_hapus"]) button { background-color: #F44336!important; }
+div[data-testid="stButton"]:has(button[aria-label*="btn_bubble"]) button { background-color: #9C27B0!important; }
+div[data-testid="stButton"]:has(button[aria-label*="btn_merge"]) button { background-color: #FF9800!important; }
 .stDataFrame {border: 1px solid #AAA;}
 </style>
 """, unsafe_allow_html=True)
@@ -133,8 +134,7 @@ if 'show_dialog' not in st.session_state:
 
 # --- 6. HALAMAN UTAMA ---
 if menu == "Tampilkan Semua":
-    st.markdown("<h2>Dashboard Manajemen Mahasiswa</h2>", unsafe_allow_html=True)
-    st.subheader("Data Mahasiswa")
+    st.markdown("<h2>Data Mahasiswa</h2>", unsafe_allow_html=True)
     
     col_tabel, col_form = st.columns([3, 1.2])
 
@@ -182,8 +182,8 @@ if menu == "Tampilkan Semua":
         jurusan = st.text_input("Jurusan:", value=selected_data["Jurusan"])
         ipk = st.number_input("IPK:", value=float(selected_data["IPK"]), min_value=0.0, max_value=4.0, step=0.01)
 
-        st.markdown('<div id="btn-tambah">', unsafe_allow_html=True)
-        if st.button("Tambah Data"):
+        # TOMBOL UDAH ADA KEY SEMUA BIAR WARNA-WARNI
+        if st.button("Tambah Data", key="btn_tambah"):
             if nim and nama and jurusan:
                 if any(d['NIM'] == nim for d in st.session_state.data):
                     st.error("NIM sudah ada!")
@@ -194,10 +194,8 @@ if menu == "Tampilkan Semua":
                     st.rerun()
             else:
                 st.error("NIM, Nama, Jurusan harus diisi!")
-        st.markdown('</div>', unsafe_allow_html=True)
 
-        st.markdown('<div id="btn-update">', unsafe_allow_html=True)
-        if st.button("Update Data"):
+        if st.button("Update Data", key="btn_update"):
             if st.session_state.selected_idx is not None:
                 nim_lama = st.session_state.data_filtered[st.session_state.selected_idx]['NIM']
                 for i, d in enumerate(st.session_state.data):
@@ -209,30 +207,23 @@ if menu == "Tampilkan Semua":
                 st.rerun()
             else:
                 st.warning("Pilih data di tabel dulu!")
-        st.markdown('</div>', unsafe_allow_html=True)
 
-        st.markdown('<div id="btn-hapus">', unsafe_allow_html=True)
-        if st.button("Hapus Data"):
+        if st.button("Hapus Data", key="btn_hapus"):
             if st.session_state.selected_idx is not None:
                 st.session_state.show_dialog = True
                 st.rerun()
             else:
                 st.warning("Pilih data dulu!")
-        st.markdown('</div>', unsafe_allow_html=True)
 
-        st.markdown('<div id="btn-bubble">', unsafe_allow_html=True)
-        if st.button("Urutkan (Nama - Bubble)"):
+        if st.button("Urutkan (Nama - Bubble)", key="btn_bubble"):
             st.session_state.data_filtered = bubble_sort_nama(st.session_state.data_filtered.copy())
             st.toast("Data diurutkan Nama - Bubble Sort")
             st.rerun()
-        st.markdown('</div>', unsafe_allow_html=True)
 
-        st.markdown('<div id="btn-merge">', unsafe_allow_html=True)
-        if st.button("Urutkan (NIM - Merge)"):
+        if st.button("Urutkan (NIM - Merge)", key="btn_merge"):
             st.session_state.data_filtered = merge_sort_nim(st.session_state.data_filtered.copy())
             st.toast("Data diurutkan NIM - Merge Sort")
             st.rerun()
-        st.markdown('</div>', unsafe_allow_html=True)
 
 elif menu == "Backup Data":
     st.subheader("Backup Data")
